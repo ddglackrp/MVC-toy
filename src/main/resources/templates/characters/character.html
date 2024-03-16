@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h2 th:text="#{page.character}">캐릭터 정보</h2>
+    </div>
+
+    <div>
+        <label for="characterId" th:text="#{label.character.server}">캐릭터 서버</label>
+        <input type="text" id="characterId" name="characterId" class="form-control" value="cain" th:value="${character.server}" readonly>
+    </div>
+    <div>
+        <label for="characterName" th:text="#{label.character.name}">캐릭터 이름</label>
+        <input type="text" id="characterName" name="characterName" class="form-control" value="젊광자" th:value="${character.name}" readonly>
+    </div>
+    <div>
+        <label for="characterJob" th:text="#{label.character.job}">직업</label>
+        <input type="text" id="characterJob" name="characterJob" class="form-control" value="프리스트" th:value="${character.job}" readonly>
+    </div>
+    <div>
+        <label for="characterLevel" th:text="#{label.character.level}">레벨</label>
+        <input type="text" id="characterLevel" name="characterLevel" class="form-control" value="10" th:value="${character.level}" readonly>
+    </div>
+    <div>
+        <label for="characterFame" th:text="#{label.character.fame}">명성</label>
+        <input type="text" id="characterFame" name="characterFame" class="form-control" value="10" th:value="${character.fame}" readonly>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg"
+                    onclick="location.href='characters.html'"
+                    th:onclick="|location.href='@{/characters}'|"
+                    type="button">목록으로</button>
+        </div>
+
+        <div class="col">
+            <form th:action="@{/characters/delete/{characterId}(characterId=${character.id})}" method="post">
+                <button class="w-100 btn btn-secondary btn-lg" type="submit">
+                    캐릭터 삭제
+                </button>
+            </form>
+        </div>
+    </div>
+
+</div> <!-- /container -->
+</body>
+</html>
